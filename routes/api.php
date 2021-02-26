@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('test', function (){
+Route::get('category', function (){
     return 123;
 });
+Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
