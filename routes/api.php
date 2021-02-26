@@ -17,6 +17,7 @@ Route::get('category', function (){
     return 123;
 });
 Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index']);
+Route::get('articles', [\App\Http\Controllers\ArticleController::class, 'index']);
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
