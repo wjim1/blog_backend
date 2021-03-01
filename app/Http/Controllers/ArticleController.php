@@ -16,10 +16,5 @@ class ArticleController extends Controller
             ->where('category_id', $category_id)
             ->paginate(10);
         return ArticleResource::collection($titles);
-//        return response()->json([
-//            'code' => PublicCode::SUCCESS_CODE,
-//            'msg' => PublicCode::SUCCESS_MSG,
-//            'data' =>  $titles
-//        ]);
     }
 }
