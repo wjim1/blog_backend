@@ -64,7 +64,10 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
 
-    public function logout()
+    /**
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
     {
         auth()->logout();
         return response()->json([
