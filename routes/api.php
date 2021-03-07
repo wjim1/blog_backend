@@ -17,7 +17,7 @@ Route::get('category', [\App\Http\Controllers\CategoryController::class, 'index'
 Route::get('articles', [\App\Http\Controllers\ArticleController::class, 'index']);
 
 Route::post('auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
-
+Route::post('user/exists', [\App\Http\Controllers\UserController::class, 'exists']);
 Route::group([
     'middleware' => ['api'],
     'prefix' => 'auth'
@@ -25,5 +25,5 @@ Route::group([
     Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::post('refresh', [\App\Http\Controllers\AuthController::class, 'refresh']);
-    Route::post('me', [\App\Http\Controllers\AuthController::class, 'me']);
+    Route::post('me', [\App\Http\Controllers\UserController::class, 'me']);
 });

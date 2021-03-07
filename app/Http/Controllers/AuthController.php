@@ -19,7 +19,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api')->except(['login', 'register', 'refresh']);
+        $this->middleware('auth:api')->except(
+            ['login', 'register', 'refresh', 'exists']
+        );
     }
 
     /**
@@ -38,6 +40,11 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function exists()
+    {
+
+    }
+
     /**
      * @param RegisterRequest $request
      * @return JsonResponse
@@ -47,6 +54,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->post('name'),
             'email' => $request->post('email'),
+            'avatar' => 'https://api.multiavatar.com/'.$request->post("name").'.png',
             'password' => bcrypt($request->post('password'))
         ]);
         // 发送信息
@@ -54,15 +62,7 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    /**
-     * Get the authenticated User.
-     *
-     * @return JsonResponse
-     */
-    public function me(): JsonResponse
-    {
-        return response()->json(auth()->user());
-    }
+
 
     /**
      * @return JsonResponse
